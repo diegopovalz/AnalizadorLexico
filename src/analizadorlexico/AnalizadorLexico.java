@@ -7,7 +7,7 @@ package analizadorlexico;
 
 /**
  *
- * @author Poveda
+ * @author Poveda & Saldarriaga
  */
 public class AnalizadorLexico {
 
