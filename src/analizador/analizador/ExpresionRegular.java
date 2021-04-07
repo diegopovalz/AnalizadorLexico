@@ -11,21 +11,21 @@ package analizador.analizador;
  */
 public enum ExpresionRegular {
     /**
-     * Variable en notación camello: camelCase
+     * Identifica si la entrada es una letra
      */
-    VARIABLE("([a-z][a-zA-Z0-9]+)+"),
+    LETRA("[A-Za-z]"),
     /**
-     * Constante caracter: 'a'
+     * Identifica si la entrada es alfanumérica (letras o números)
      */
-    CHAR_CONST("([\'][A-Za-z0-9]{1}[\'])"),
+    ALFA_NUMERICO("[0-9A-Za-z]"),
     /**
-     * Constante hilera: "abc"
+     * Identifica si la entrada es un número
      */
-    STR_CONST("([\"][A-Za-z0-9]+[\"])");
+    NUMERO_ENTERO("[0-9]");
     
     private final String regExp;
     
-    public String getRegExp(){
+    public String getExpresionRegular(){
         return regExp;
     }
     
