@@ -17,11 +17,11 @@ public enum ExpresionRegular {
     /**
      * Constante caracter: 'a'
      */
-    CHAR_CONST("([\'][A-Za-z0-9]{1}[\'])+"),
+    CHAR_CONST("([\'][A-Za-z0-9]{1}[\'])"),
     /**
      * Constante hilera: "abc"
      */
-    STR_CONST("([\"][A-Za-z0-9]+[\"])+");
+    STR_CONST("([\"][A-Za-z0-9]+[\"])");
     
     private final String regExp;
     
