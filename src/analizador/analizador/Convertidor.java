@@ -6,13 +6,23 @@
 package analizador.analizador;
 
 import analizador.token.Token;
+import java.util.ArrayList;
 
 /**
  *
- * @author Poveda
+ * @author Poveda & Saldarriaga
  */
 public class Convertidor {
+
     public static Token[] convertirATokens(String linea) {
         return null;
+    }
+
+    public static String convertirTokensATexto(ArrayList<Token[]> tokensFinales) {
+        String salida = "";
+        for(Token[] tokens : tokensFinales) {
+            salida += "";
+        }
+        return salida;
     }
 }

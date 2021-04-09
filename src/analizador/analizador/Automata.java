@@ -7,7 +7,7 @@ package analizador.analizador;
 
 /**
  *
- * @author Poveda
+ * @author Poveda & Saldarriaga
  */
 public class Automata {
 

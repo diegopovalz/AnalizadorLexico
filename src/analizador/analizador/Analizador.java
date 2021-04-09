@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Poveda
+ * @author Poveda & Saldarriaga
  */
 public class Analizador {
     public String analizar(String texto){
@@ -20,7 +20,7 @@ public class Analizador {
             Token[] tokens = Convertidor.convertirATokens(linea);
             tokensFinales.add(tokens);
         }
-        return convertirTokensATexto(tokensFinales);
+        return Convertidor.convertirTokensATexto(tokensFinales);
     }
     
     private String[] convertirLineas(String texto) {
@@ -29,9 +29,5 @@ public class Analizador {
             linea = linea.trim();
         }
         return lineas;
-    }
-    
-    private String convertirTokensATexto(ArrayList<Token[]> tokens) {
-        return "";
     }
 }
