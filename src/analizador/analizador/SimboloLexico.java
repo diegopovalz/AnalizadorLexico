@@ -1,0 +1,66 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package analizador.analizador;
+
+/**
+ *
+ * @author Poveda & Saldarriaga
+ */
+public enum SimboloLexico {
+    //Identificadores de variables
+    VAR("var"),
+    //Identificador de funciones
+    FUNCTION("function"),
+    PRINT("print"),
+    //Identificadores de operaciones
+    MINUS("-"),
+    PLUS("+"),
+    TIMES("*"),
+    DIVIDED("/"),
+    //Identificadores de relación/condición
+    EQUALS("="),
+    IF("if"),
+    ELSE("else"),
+    AND("&&"),
+    OR("||"),
+    //Identificadores de separador
+    OPEN_BRAC("{"),
+    CLOSE_BRAC("}"),
+    OPEN_PAR("("),
+    CLOSE_PAR(")"),
+    SEMICOLON(";"),
+    //Identificadores de texto
+    DOUB_QUOTE("\""),
+    SING_QUOTE("\'");
+
+    private final String lexema;
+
+    private SimboloLexico(String lexema) {
+        this.lexema = lexema;
+    }
+
+    public static SimboloLexico desdeLexema(String lexema) {
+        for (SimboloLexico simb : values()) {
+            if (simb.getLexema().equals(lexema)) {
+                return simb;
+            }
+        }
+        return null;
+    }
+    
+    public static boolean esSimbolo(String lexema) {
+        for (SimboloLexico simb : values()) {
+            if (simb.getLexema().equals(lexema)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getLexema() {
+        return lexema;
+    }
+}

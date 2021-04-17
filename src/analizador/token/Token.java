@@ -28,4 +28,9 @@ public class Token {
     public void setLexema(String lexema) {
         this.lexema = lexema;
     }
+
+    public Token(String tipo, String lexema) {
+        this.tipo = tipo;
+        this.lexema = lexema;
+    }
 }

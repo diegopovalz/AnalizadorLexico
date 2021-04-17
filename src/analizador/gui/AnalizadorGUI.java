@@ -5,6 +5,8 @@
  */
 package analizador.gui;
 
+import analizador.analizador.Analizador;
+
 /**
  *
  * @author Poveda
@@ -45,6 +47,11 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(txtResultado);
 
         btnAnalizar.setText("Analizar");
+        btnAnalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnalizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,6 +82,14 @@ public class AnalizadorGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
+        txtResultado.setText("");
+        String texto = txtTexto.getText();
+        Analizador analizador = new Analizador();
+        String resultado = analizador.analizar(texto);
+        txtResultado.setText(resultado);
+    }//GEN-LAST:event_btnAnalizarActionPerformed
 
     /**
      * @param args the command line arguments
