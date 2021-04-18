@@ -11,7 +11,7 @@ package analizador.analizador;
  */
 public enum SimboloLexico {
     //Identificadores de variables
-    VAR("var"),
+    VARIABLE("var"),
     //Identificador de funciones
     FUNCTION("function"),
     PRINT("print"),
@@ -32,6 +32,7 @@ public enum SimboloLexico {
     OPEN_PAR("("),
     CLOSE_PAR(")"),
     SEMICOLON(";"),
+    SEP_COMMA(","),
     //Identificadores de texto
     DOUB_QUOTE("\""),
     SING_QUOTE("\'");
