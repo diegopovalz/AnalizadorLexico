@@ -43,6 +43,7 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         txtTexto.setRows(5);
         jScrollPane1.setViewportView(txtTexto);
 
+        txtResultado.setEditable(false);
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
         jScrollPane2.setViewportView(txtResultado);
