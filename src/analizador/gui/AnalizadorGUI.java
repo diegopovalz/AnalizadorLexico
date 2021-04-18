@@ -100,6 +100,10 @@ public class AnalizadorGUI extends javax.swing.JFrame {
     private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
         txtResultado.setText("");
         String texto = txtTexto.getText();
+        if(texto == null || texto.equalsIgnoreCase("")) {
+            txtResultado.setText("No hay texto por analizar");
+            return;
+        }
         Analizador analizador = new Analizador();
         String resultado = analizador.analizar(texto);
         txtResultado.setText(resultado);
