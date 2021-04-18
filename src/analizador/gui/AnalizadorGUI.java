@@ -34,6 +34,7 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
         btnAnalizar = new javax.swing.JButton();
+        btnAnalizar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analizador Lexico Java");
@@ -53,20 +54,30 @@ public class AnalizadorGUI extends javax.swing.JFrame {
             }
         });
 
+        btnAnalizar1.setText("Limpiar");
+        btnAnalizar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnalizar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(btnAnalizar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnalizar1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(323, 323, 323)
-                .addComponent(btnAnalizar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +87,9 @@ public class AnalizadorGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
-                .addComponent(btnAnalizar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnalizar)
+                    .addComponent(btnAnalizar1))
                 .addContainerGap())
         );
 
@@ -90,6 +103,12 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         String resultado = analizador.analizar(texto);
         txtResultado.setText(resultado);
     }//GEN-LAST:event_btnAnalizarActionPerformed
+
+    private void btnAnalizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizar1ActionPerformed
+        // TODO add your handling code here:
+        txtTexto.setText("");
+        txtResultado.setText("");
+    }//GEN-LAST:event_btnAnalizar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,6 +147,7 @@ public class AnalizadorGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalizar;
+    private javax.swing.JButton btnAnalizar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea txtResultado;
