@@ -12,6 +12,8 @@ package analizador.analizador;
 public enum SimboloLexico {
     //Identificadores de variables
     VARIABLE("var"),
+    CONSTANT("const"),
+    LET_VAR("let"),
     //Identificador de funciones
     FUNCTION("function"),
     PRINT("print"),
@@ -22,10 +24,10 @@ public enum SimboloLexico {
     DIVIDED("/"),
     //Identificadores de relación/condición
     EQUALS("="),
-    IF("if"),
-    ELSE("else"),
-    AND("&&"),
-    OR("||"),
+    IF_COND("if"),
+    ELSE_COND("else"),
+    AND_OPER("&&"),
+    OR_OPER("||"),
     //Identificadores de separador
     OPEN_BRAC("{"),
     CLOSE_BRAC("}"),

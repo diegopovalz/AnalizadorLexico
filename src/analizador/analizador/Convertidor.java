@@ -26,15 +26,15 @@ public class Convertidor {
                 if (caracter.equalsIgnoreCase("\"")) {
                     //Es el segundo "
                     esHileraOCaracter = false;
+                    lexema += caracter;
                     tokens.add(new Token("STRING    ", lexema));
-                    tokens.add(analizar(caracter));
                     lexema = "";
                     continue;
                 } else if (caracter.equalsIgnoreCase("'")) {
                     //Es el segundo '
                     esHileraOCaracter = false;
+                    lexema += caracter;
                     tokens.add(new Token("CARACTER", lexema));
-                    tokens.add(analizar(caracter));
                     lexema = "";
                     continue;
                 }
@@ -42,15 +42,19 @@ public class Convertidor {
                 continue;
             }
             if (SimboloLexico.esSimbolo(caracter)) {
-                //Es el primero " o '
+                //Es el primer " o '
                 if (caracter.equalsIgnoreCase("\"") || caracter.equalsIgnoreCase("'")) {
                     esHileraOCaracter = true;
                 }
                 if (!lexema.isEmpty()) {
                     tokens.add(analizar(lexema));
                 }
-                tokens.add(analizar(caracter));
-                lexema = "";
+                if (!caracter.equalsIgnoreCase("\"") && !caracter.equalsIgnoreCase("'")) {
+                    tokens.add(analizar(caracter));
+                    lexema = "";
+                } else {
+                    lexema += caracter;
+                }
             } else if (caracter.equalsIgnoreCase(" ")) {
                 if (!lexema.isEmpty()) {
                     tokens.add(analizar(lexema));
@@ -69,7 +73,7 @@ public class Convertidor {
     private static Token analizar(String lexema) {
         SimboloLexico simbolo = SimboloLexico.desdeLexema(lexema);
         Token token = null;
-        if(simbolo != null) {
+        if (simbolo != null) {
             token = new Token(simbolo.name(), simbolo.getLexema());
         } else {
             if (Automata.lexemaEsIdentificador(lexema)) {
@@ -78,7 +82,7 @@ public class Convertidor {
                 token = new Token("NUMBER   ", lexema);
             }
         }
-        
+
         if (token == null) {
             token = new Token("ERROR    ", lexema);
         }
