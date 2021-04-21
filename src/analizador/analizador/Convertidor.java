@@ -22,6 +22,7 @@ public class Convertidor {
         char[] caracteres = linea.toCharArray();
         String lexema = "";
         boolean esHileraOCaracter = false;
+        String simboloHileraOCaracter = "";
         for (int i = 0; i < caracteres.length; i++) {
             String caracter = caracteres[i] + "";
             if (esHileraOCaracter) {
@@ -29,19 +30,40 @@ public class Convertidor {
                     //Es el segundo "
                     esHileraOCaracter = false;
                     lexema += caracter;
+                    
+                    //Si el simbolo final no es el mismo que el del inicio, ERROR
+                    if(!caracter.equalsIgnoreCase(simboloHileraOCaracter)) {
+                        tokens.add(new Token("ERROR     ", lexema));
+                        lexema = "";
+                        simboloHileraOCaracter = "";
+                        continue;
+                    }
+                    
                     tokens.add(new Token("STRING    ", lexema));
                     lexema = "";
+                    simboloHileraOCaracter = "";
                     continue;
                 } else if (caracter.equalsIgnoreCase("'")) {
                     //Es el segundo '
                     esHileraOCaracter = false;
                     lexema += caracter;
+                    
+                    //Si el simbolo final no es el mismo que el del inicio, ERROR
+                    if(!caracter.equalsIgnoreCase(simboloHileraOCaracter)) {
+                        tokens.add(new Token("ERROR     ", lexema));
+                        lexema = "";
+                        simboloHileraOCaracter = "";
+                        continue;
+                    }
+                    
                     if (lexema.length() == 3) {
                         tokens.add(new Token("CARACTER", lexema));
                     } else {
+                        //Si el "caracter" tiene más de 3 caracteres, ERROR
                         tokens.add(new Token("ERROR     ", lexema));
                     }
                     lexema = "";
+                    simboloHileraOCaracter = "";
                     continue;
                 }
                 lexema += caracter;
@@ -63,6 +85,7 @@ public class Convertidor {
                     } else {
                         esHileraOCaracter = true;
                     }
+                    simboloHileraOCaracter = caracter;
                 }
                 if (!lexema.isEmpty()) {
                     tokens.add(analizar(lexema));

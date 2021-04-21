@@ -16,12 +16,12 @@ public enum SimboloLexico {
     LET_VAR("let"),
     //Identificador de funciones
     FUNCTION("function"),
-    PRINT("print"),
+    PRINT_FUNC("print"),
     //Identificadores de operaciones
-    MINUS("-"),
-    PLUS("+"),
-    TIMES("*"),
-    DIVIDED("/"),
+    MINUS_OPE("-"),
+    PLUS_OPE("+"),
+    TIMES_OPE("*"),
+    DIVIDED_OPE("/"),
     //Identificadores de relación/condición
     EQUALS("="),
     IF_COND("if"),
