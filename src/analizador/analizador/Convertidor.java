@@ -5,6 +5,8 @@
  */
 package analizador.analizador;
 
+import analizador.automata.Automata;
+import analizador.simbolo.SimboloLexico;
 import analizador.token.Token;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,17 +36,33 @@ public class Convertidor {
                     //Es el segundo '
                     esHileraOCaracter = false;
                     lexema += caracter;
-                    tokens.add(new Token("CARACTER", lexema));
+                    if (lexema.length() == 3) {
+                        tokens.add(new Token("CARACTER", lexema));
+                    } else {
+                        tokens.add(new Token("ERROR     ", lexema));
+                    }
                     lexema = "";
                     continue;
                 }
                 lexema += caracter;
+                if (i == caracteres.length - 1) {
+                    if ((!caracter.equalsIgnoreCase("\"") || !caracter.equalsIgnoreCase("'"))) {
+                        esHileraOCaracter = false;
+                        tokens.add(new Token("ERROR     ", lexema));
+                        lexema = "";
+                    }
+                }
                 continue;
             }
             if (SimboloLexico.esSimbolo(caracter)) {
                 //Es el primer " o '
                 if (caracter.equalsIgnoreCase("\"") || caracter.equalsIgnoreCase("'")) {
-                    esHileraOCaracter = true;
+                    if (i == caracteres.length - 1) {
+                        tokens.add(new Token("ERROR     ", caracter));
+                        continue;
+                    } else {
+                        esHileraOCaracter = true;
+                    }
                 }
                 if (!lexema.isEmpty()) {
                     tokens.add(analizar(lexema));
