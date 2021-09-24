@@ -13,14 +13,18 @@ import java.util.ArrayList;
  * @author Poveda & Saldarriaga
  */
 public class Analizador {
-    public String analizar(String texto){
+    public ArrayList<Token[]> convertirATokens(String texto){
         ArrayList<Token[]> tokensFinales = new ArrayList<>();
         String[] lineas = convertirLineas(texto);
         for(String linea : lineas) {
             Token[] tokens = Convertidor.convertirATokens(linea);
             tokensFinales.add(tokens);
         }
-        return Convertidor.convertirTokensATexto(tokensFinales);
+        return tokensFinales; //Convertidor.convertirTokensATexto(tokensFinales)
+    }
+    
+    public String analizarTokens(ArrayList<Token[]> tokens) {
+        return Convertidor.convertirTokensATexto(tokens);
     }
     
     private String[] convertirLineas(String texto) {

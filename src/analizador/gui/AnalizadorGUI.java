@@ -6,6 +6,9 @@
 package analizador.gui;
 
 import analizador.analizador.Analizador;
+import analizador.analizador.AnalizadorSintetico;
+import analizador.token.Token;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +21,8 @@ public class AnalizadorGUI extends javax.swing.JFrame {
      */
     public AnalizadorGUI() {
         initComponents();
+        btnSintetico.setEnabled(false);
+        btnLimpiar.setEnabled(false);
     }
 
     /**
@@ -32,9 +37,15 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtTexto = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtResultado = new javax.swing.JTextArea();
-        btnAnalizar = new javax.swing.JButton();
-        btnAnalizar1 = new javax.swing.JButton();
+        txtResultadoLexico = new javax.swing.JTextArea();
+        btnLexico = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnSintetico = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtResultadoSintetico = new javax.swing.JTextArea();
+        lblCodigo = new javax.swing.JLabel();
+        lblLexico = new javax.swing.JLabel();
+        lblSintetico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analizador Lexico Java");
@@ -43,77 +54,132 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         txtTexto.setRows(5);
         jScrollPane1.setViewportView(txtTexto);
 
-        txtResultado.setEditable(false);
-        txtResultado.setColumns(20);
-        txtResultado.setRows(5);
-        jScrollPane2.setViewportView(txtResultado);
+        txtResultadoLexico.setEditable(false);
+        txtResultadoLexico.setColumns(20);
+        txtResultadoLexico.setRows(5);
+        jScrollPane2.setViewportView(txtResultadoLexico);
 
-        btnAnalizar.setText("Analizar");
-        btnAnalizar.addActionListener(new java.awt.event.ActionListener() {
+        btnLexico.setText("Analisis Lexico");
+        btnLexico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnalizarActionPerformed(evt);
+                btnLexicoActionPerformed(evt);
             }
         });
 
-        btnAnalizar1.setText("Limpiar");
-        btnAnalizar1.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnalizar1ActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
+
+        btnSintetico.setText("Analisis Sintetico");
+        btnSintetico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSinteticoActionPerformed(evt);
+            }
+        });
+
+        txtResultadoSintetico.setEditable(false);
+        txtResultadoSintetico.setColumns(20);
+        txtResultadoSintetico.setRows(5);
+        jScrollPane3.setViewportView(txtResultadoSintetico);
+
+        lblCodigo.setText("CÓDIGO");
+
+        lblLexico.setText("ANÁLISIS LEXICO");
+
+        lblSintetico.setText("ANÁLISIS SINTETICO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(228, 228, 228)
+                        .addComponent(btnLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127)
+                        .addComponent(btnSintetico, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(273, 273, 273)
-                        .addComponent(btnAnalizar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAnalizar1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(415, 415, 415)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(lblCodigo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblLexico)
+                .addGap(266, 266, 266)
+                .addComponent(lblSintetico)
+                .addGap(113, 113, 113))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodigo)
+                    .addComponent(lblLexico)
+                    .addComponent(lblSintetico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnalizar)
-                    .addComponent(btnAnalizar1))
+                    .addComponent(btnSintetico)
+                    .addComponent(btnLexico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimpiar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAnalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizarActionPerformed
-        txtResultado.setText("");
+    private void btnLexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLexicoActionPerformed
+        txtResultadoLexico.setText("");
         String texto = txtTexto.getText();
         if(texto == null || texto.equalsIgnoreCase("")) {
-            txtResultado.setText("No hay texto por analizar");
+            txtResultadoLexico.setText("No hay texto por analizar");
             return;
         }
         Analizador analizador = new Analizador();
-        String resultado = analizador.analizar(texto);
-        txtResultado.setText(resultado);
-    }//GEN-LAST:event_btnAnalizarActionPerformed
+        tokens = analizador.convertirATokens(texto);
+        String resultado = analizador.analizarTokens(tokens);
+        txtResultadoLexico.setText(resultado);
+        btnSintetico.setEnabled(true);
+        btnLexico.setEnabled(false);
+        btnLimpiar.setEnabled(true);
+    }//GEN-LAST:event_btnLexicoActionPerformed
 
-    private void btnAnalizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalizar1ActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
         txtTexto.setText("");
-        txtResultado.setText("");
-    }//GEN-LAST:event_btnAnalizar1ActionPerformed
+        txtResultadoLexico.setText("");
+        txtResultadoSintetico.setText("");
+        btnLexico.setEnabled(true);
+        btnSintetico.setEnabled(false);
+        btnLimpiar.setEnabled(false);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSinteticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSinteticoActionPerformed
+        AnalizadorSintetico analizador = new AnalizadorSintetico();
+        String mensaje = analizador.analizarTokens(tokens);
+        txtResultadoSintetico.setText(mensaje);
+        btnSintetico.setEnabled(false);
+        btnLimpiar.setEnabled(true);
+    }//GEN-LAST:event_btnSinteticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,12 +216,20 @@ public class AnalizadorGUI extends javax.swing.JFrame {
         });
     }
 
+    private ArrayList<Token[]> tokens;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnalizar;
-    private javax.swing.JButton btnAnalizar1;
+    private javax.swing.JButton btnLexico;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSintetico;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txtResultado;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblLexico;
+    private javax.swing.JLabel lblSintetico;
+    private javax.swing.JTextArea txtResultadoLexico;
+    private javax.swing.JTextArea txtResultadoSintetico;
     private javax.swing.JTextArea txtTexto;
     // End of variables declaration//GEN-END:variables
 }
