@@ -23,11 +23,12 @@ public class ConvertidorSintetico {
             return "El código a analizar debe empezar con 'function' o 'if'";
         }
         
-        String simbolo = ""; 
+        String simbolo; 
         for(int i = 0; i < tokens.size(); i++) {
             simbolo = tokens.get(i).getTipo();
             switch(simbolo) {
                 case "IF_COND":
+                case "WHILE_LOOP":
                     if(!tokens.get(i + 1).getTipo().equals("OPEN_PAR")) {
                         return "Error al rededor de token [" + simbolo.trim() + "]";
                     }

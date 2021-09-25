@@ -26,6 +26,7 @@ public enum SimboloLexico {
     EQUALS("="),
     IF_COND("if"),
     ELSE_COND("else"),
+    WHILE_LOOP("while"),
     AND_OPER("&&"),
     OR_OPER("||"),
     //Identificadores de separador
